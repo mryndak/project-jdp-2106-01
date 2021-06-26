@@ -32,13 +32,13 @@ public class ProductController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDto create(@RequestBody Product product) {
+    public ProductDto create(@RequestBody ProductDto product) {
         System.out.println(product.getName() + " created");
         return null;
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDto update(@RequestBody Product product) {
+    public ProductDto update(@RequestBody ProductDto product) {
         System.out.println(product.getName() + " updated");
         return null;
     }
