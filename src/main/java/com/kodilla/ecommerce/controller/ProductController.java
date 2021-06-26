@@ -1,8 +1,6 @@
 package com.kodilla.ecommerce.controller;
 
-import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.dto.ProductDto;
-import com.kodilla.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
