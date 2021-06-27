@@ -10,7 +10,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(value = "/v1/products", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/v1/products", produces = APPLICATION_JSON_VALUE)
 public class ProductsController {
 
     @GetMapping
@@ -29,7 +29,7 @@ public class ProductsController {
         );
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ProductDto getProduct(@PathVariable Long id ) {
         return ProductDto.builder()
                 .id(1L)
@@ -37,7 +37,7 @@ public class ProductsController {
                 .build();
     }
 
-    @PostMapping
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ProductDto createProduct(@RequestBody final ProductDto productDto) {
         return ProductDto.builder()
                 .id(1L)
@@ -45,7 +45,7 @@ public class ProductsController {
                 .build();
     }
 
-    @PutMapping
+    @PutMapping(consumes = APPLICATION_JSON_VALUE)
     public ProductDto updateProduct(@RequestBody final ProductDto productDto) {
         return ProductDto.builder()
                 .id(1L)
