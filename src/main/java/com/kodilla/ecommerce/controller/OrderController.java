@@ -9,11 +9,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static java.time.LocalDate.of;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(value = "/v1/order", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/v1/order", produces = APPLICATION_JSON_VALUE)
 public class OrderController {
 
     @GetMapping
@@ -31,7 +30,7 @@ public class OrderController {
         );
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public OrderDto getOrder(@PathVariable Long id) {
         return OrderDto.builder()
                 .id(1L)
@@ -40,7 +39,7 @@ public class OrderController {
                 .build();
     }
 
-    @PostMapping
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public OrderDto createOrder(@RequestBody final OrderDto orderDto) {
         return OrderDto.builder()
                 .id(1L)
@@ -49,7 +48,7 @@ public class OrderController {
                 .build();
     }
 
-    @PutMapping
+    @PutMapping(consumes = APPLICATION_JSON_VALUE)
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         return OrderDto.builder()
                 .id(1L)
@@ -58,7 +57,7 @@ public class OrderController {
                 .build();
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public void deleteOrder(@PathVariable Long id) {
         System.out.println("deleted order nr: " + id);
     }
