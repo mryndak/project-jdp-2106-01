@@ -14,6 +14,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GroupController {
 
+//    private final DbService service;
+//    private final GroupMapper groupMapper;
+
     @RequestMapping(method = RequestMethod.GET, value = "getGroups")
     public List<GroupDto> getGroups() {
         List<GroupDto> rtn = new ArrayList<>();
@@ -40,12 +43,15 @@ public class GroupController {
         return groupDto;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteGroup")
-    public void deleteGroup(@RequestParam Integer groupId) {
-
+    @RequestMapping(method = RequestMethod.POST, value = "create",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createGroup(@RequestBody GroupDto groupDto) {
+//        Group group = groupMapper.mapToGroup(groupDto);
+//        service.saveGroup(group);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateGroup")
+    @RequestMapping(method = RequestMethod.PUT, value = "update",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public GroupDto updateGroup(@RequestBody GroupDto groupDto) {
         GroupDto stub = new GroupDto();
         stub.setId(groupDto.getId());
