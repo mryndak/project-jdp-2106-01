@@ -40,11 +40,6 @@ public class GroupController {
         return groupDto;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createGroup", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createGroup(@RequestBody GroupDto groupDto) {
-
-    }
-
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteGroup")
     public void deleteGroup(@RequestParam Integer groupId) {
 
