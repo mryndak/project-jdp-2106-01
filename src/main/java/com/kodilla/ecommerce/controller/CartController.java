@@ -22,12 +22,12 @@ public class CartController {
 //    private final OrderMapper orderMapper;
 
 
-    @PostMapping
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void createCart(@RequestBody final CartDto cartDto) {
         System.out.println("Uworzono koszyk");
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value="{id}", produces = APPLICATION_JSON_VALUE)
     public CartDto getCart(@PathVariable final Long id) {
         System.out.println("Koszyk został pobrany");
         return CartDto.builder()
@@ -38,18 +38,18 @@ public class CartController {
                 .build();
     }
 
-    @PutMapping(value = "/{cartId}/{productId}")
+    @PutMapping("{cartId}/{productId}")
     public List<ProductDto> addProduct(@PathVariable long cartId, @PathVariable long productId) {
         System.out.println("Produkt dodano do koszyka");
         return null;
     }
 
-    @DeleteMapping (value = "/{cartId}/{productId}")
+    @DeleteMapping ("{cartId}/{productId}")
     public void removeProduct(@PathVariable long cartId, @PathVariable long productId) {
         System.out.println("Produkt został usunięty z koszyka");
     }
 
-    @PostMapping(value = "makeOrder")
+    @PostMapping(value="makeOrder", consumes = APPLICATION_JSON_VALUE)
     public void makeOrder(@RequestBody final ExampleDto orderDto) { //finalnie OrderDto
         System.out.println("Utworzono zamówienie i usunięto koszyk");
     }
