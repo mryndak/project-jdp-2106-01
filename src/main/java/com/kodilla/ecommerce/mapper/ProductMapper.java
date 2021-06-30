@@ -16,6 +16,10 @@ public class ProductMapper {
                 .name(productDto.getName())
                 .description(productDto.getDescription())
                 .price(productDto.getPrice())
+<<<<<<< HEAD
+=======
+                .groupId(productDto.getGroupId())
+>>>>>>> b1c4854 (JDP210601-21: real implementation of ProductController, added ProductMapper, ProductRepository, ProductService, added @Builder annotation in Product)
                 .build();
     }
 
@@ -25,6 +29,10 @@ public class ProductMapper {
                 .name(product.getName())
                 .description(product.getDescription())
                 .price(product.getPrice())
+<<<<<<< HEAD
+=======
+                .groupId(product.getGroupId())
+>>>>>>> b1c4854 (JDP210601-21: real implementation of ProductController, added ProductMapper, ProductRepository, ProductService, added @Builder annotation in Product)
                 .build();
     }
 
