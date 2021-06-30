@@ -24,12 +24,21 @@ public class ProductService {
         return mapper.mapToProductDto(repository.findById(id));
     }
 
+<<<<<<< HEAD
     public ProductDto createProduct(ProductDto productDto) {
         return mapper.mapToProductDto(repository.save(mapper.mapToProduct(productDto)));
     }
 
     public ProductDto updateProduct(ProductDto productDto) {
         return mapper.mapToProductDto(repository.save(mapper.mapToProduct(productDto)));
+=======
+    public ProductDto createProduct(ProductDto product) {
+        return mapper.mapToProductDto(repository.save(mapper.mapToProduct(product)));
+    }
+
+    public ProductDto updateProduct(ProductDto product) {
+        return mapper.mapToProductDto(repository.save(mapper.mapToProduct(product)));
+>>>>>>> b1c4854 (JDP210601-21: real implementation of ProductController, added ProductMapper, ProductRepository, ProductService, added @Builder annotation in Product)
     }
 
     @Transactional
