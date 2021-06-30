@@ -24,12 +24,12 @@ public class ProductService {
         return mapper.mapToProductDto(repository.findById(id));
     }
 
-    public ProductDto createProduct(ProductDto product) {
-        return mapper.mapToProductDto(repository.save(mapper.mapToProduct(product)));
+    public ProductDto createProduct(ProductDto productDto) {
+        return mapper.mapToProductDto(repository.save(mapper.mapToProduct(productDto)));
     }
 
-    public ProductDto updateProduct(ProductDto product) {
-        return mapper.mapToProductDto(repository.save(mapper.mapToProduct(product)));
+    public ProductDto updateProduct(ProductDto productDto) {
+        return mapper.mapToProductDto(repository.save(mapper.mapToProduct(productDto)));
     }
 
     @Transactional
