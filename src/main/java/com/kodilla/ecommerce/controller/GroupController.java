@@ -35,8 +35,8 @@ public class GroupController {
         return rtn;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getGroup")
-    public GroupDto getGroup(@RequestParam Integer groupId) {
+    @GetMapping("{id}")
+    public GroupDto getGroup(@PathVariable long id) {
         GroupDto groupDto = new GroupDto();
         groupDto.setName("Test One Group");
         groupDto.setId(1);
