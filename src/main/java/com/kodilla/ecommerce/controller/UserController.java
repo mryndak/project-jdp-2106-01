@@ -16,7 +16,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity createUser(@RequestBody UserDto userDto) {
-        System.out.println("id: " + userDto.getId() + ", name: " + userDto.getUserName() + " was created");
+        System.out.println("id: " + userDto.getId() + ", name: " + userDto.getUsername() + " was created");
 //        userService.addUser(userMapper.DtoToEntity(userDto)) mapper powinien być static
         return new ResponseEntity(HttpStatus.CREATED);
     }
