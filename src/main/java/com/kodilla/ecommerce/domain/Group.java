@@ -1,24 +1,20 @@
 package com.kodilla.ecommerce.domain;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity(name = "Group")
+@Entity(name = "ProductGroup")
 public class Group {
 
     @Id
-    @NotNull
-    @GeneratedValue
-    @Column(name = "ID")
     private Long id;
 
     private String groupName;
