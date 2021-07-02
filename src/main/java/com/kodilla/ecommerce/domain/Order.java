@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "ORDERS")
 @NoArgsConstructor
+//@AllArgsConstructor  - do I need it?
 @Setter
 public class Order {
 
@@ -24,7 +26,7 @@ public class Order {
     private LocalDate orderDate;
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    public Order(Long id, Long userId, Long cartId, String orderStatus, LocalDate orderDate, List<OrderItem> orderItems) {
+    public Order(Long id, Long userId, Long cartId, String orderStatus, List<OrderItem> orderItems) {
         this.id = id;
         this.userId = userId;
         this.cartId = cartId;
