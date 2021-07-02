@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 public class Order {
@@ -24,6 +23,15 @@ public class Order {
     private BigDecimal totalPrice;
     private LocalDate orderDate;
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    public Order(Long id, Long userId, Long cartId, String orderStatus, LocalDate orderDate, List<OrderItem> orderItems) {
+        this.id = id;
+        this.userId = userId;
+        this.cartId = cartId;
+        this.orderStatus = orderStatus;
+        this.orderDate = LocalDate.now();
+        this.orderItems = orderItems;
+    }
 
     @Id
     @GeneratedValue
@@ -70,5 +78,9 @@ public class Order {
     @Column(name = "ORDERED_ITEMS")
     public List<OrderItem> getOrderItems() {
         return orderItems;
+    }
+
+    private BigDecimal calculateTotalPrice() {
+        return BigDecimal.ZERO;
     }
 }
