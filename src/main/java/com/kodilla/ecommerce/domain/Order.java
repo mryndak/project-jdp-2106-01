@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 @NoArgsConstructor
-//@AllArgsConstructor  - do I need it?
+@AllArgsConstructor
 @Setter
 public class Order {
 
@@ -25,15 +25,6 @@ public class Order {
     private BigDecimal totalPrice;
     private LocalDate orderDate;
     private List<OrderItem> orderItems = new ArrayList<>();
-
-    public Order(Long id, Long userId, Long cartId, String orderStatus, List<OrderItem> orderItems) {
-        this.id = id;
-        this.userId = userId;
-        this.cartId = cartId;
-        this.orderStatus = orderStatus;
-        this.orderDate = LocalDate.now();
-        this.orderItems = orderItems;
-    }
 
     @Id
     @GeneratedValue
@@ -55,11 +46,13 @@ public class Order {
         return cartId;
     }
 
+    @NotNull
     @Column(name = "STATUS")
     public String getOrderStatus() {
         return orderStatus;
     }
 
+    @NotNull
     @Column(name = "TOTAL_PRICE")
     public BigDecimal getTotalPrice() {
         return totalPrice;
@@ -77,12 +70,9 @@ public class Order {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    @NotNull
     @Column(name = "ORDERED_ITEMS")
     public List<OrderItem> getOrderItems() {
         return orderItems;
-    }
-
-    private BigDecimal calculateTotalPrice() {
-        return BigDecimal.ZERO;
     }
 }
