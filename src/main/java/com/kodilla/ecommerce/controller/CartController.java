@@ -16,36 +16,34 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CartController {
 
 //    private final CartService cartService;
-//    private final CartMapper cartMapper;
-//    private final ProductMapper productMapper;
-//    private final OrderMapper orderMapper;
 
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void createCart(@RequestBody final CartDto cartDto) {
-        System.out.println("Uworzono koszyk");
+        System.out.println("Uworzono koszyk1233");
     }
 
     @GetMapping(value="{id}", produces = APPLICATION_JSON_VALUE)
     public CartDto getCart(@PathVariable final Long id) {
-        System.out.println("Koszyk został pobrany");
+        System.out.println("Koszyk 1323został pobrany");
         return CartDto.builder()
                 .id(1L)
-                .product(new ArrayList<>())
-                .price(new BigDecimal("100"))
                 .userId(123L)
                 .build();
     }
 
     @PutMapping("{cartId}/{productId}")
     public List<ProductDto> addProduct(@PathVariable long cartId, @PathVariable long productId) {
-        System.out.println("Produkt dodano do koszyka");
+        if(1 ==1) {
+            // to cos tam
+        }
+        System.out.println("Produkt 2222dodano do koszyka");
         return null;
     }
 
     @DeleteMapping ("{cartId}/{productId}")
-    public void removeProduct(@PathVariable long cartId, @PathVariable long productId) {
-        System.out.println("Produkt został usunięty z koszyka");
+    public void removeProduct(@PathVariable long cartId, @PathVariable Long productId) {
+        System.out.println("Produkt z111ostał usunięty z koszyka");
     }
 
 //    @PostMapping(value="makeOrder", consumes = APPLICATION_JSON_VALUE)
