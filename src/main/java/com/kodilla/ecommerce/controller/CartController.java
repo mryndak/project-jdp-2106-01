@@ -1,6 +1,5 @@
 package com.kodilla.ecommerce.controller;
 import com.kodilla.ecommerce.dto.CartDto;
-import com.kodilla.ecommerce.dto.ExampleDto;
 import com.kodilla.ecommerce.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -49,8 +48,8 @@ public class CartController {
         System.out.println("Produkt został usunięty z koszyka");
     }
 
-    @PostMapping(value="makeOrder", consumes = APPLICATION_JSON_VALUE)
-    public void makeOrder(@RequestBody final ExampleDto orderDto) { //finalnie OrderDto
-        System.out.println("Utworzono zamówienie i usunięto koszyk");
-    }
+//    @PostMapping(value="makeOrder", consumes = APPLICATION_JSON_VALUE)
+//    public void makeOrder(@RequestBody final ExampleDto orderDto) { //finalnie OrderDto
+//        System.out.println("Utworzono zamówienie i usunięto koszyk");
+//    }
 }
