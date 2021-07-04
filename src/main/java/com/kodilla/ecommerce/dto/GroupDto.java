@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class GroupDto {
-    private int Id;
+
+    private long id;
     private String name;
+
 }
