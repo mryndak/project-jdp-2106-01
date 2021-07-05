@@ -33,7 +33,7 @@ public class User {
             fetch = FetchType.LAZY
     )
     @NotNull
-    @Column(name = "OEDERS_LIST")
+    @Column(name = "ORDERS_LIST")
     public List<Order> getOrderList() {
         return orderList;
     }
