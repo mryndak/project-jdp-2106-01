@@ -25,6 +25,7 @@ public class Order {
     private BigDecimal totalPrice;
     private LocalDate orderDate;
     private List<OrderItem> orderItems = new ArrayList<>();
+    private User user;
 
     @Id
     @GeneratedValue
@@ -74,5 +75,11 @@ public class Order {
     @Column(name = "ORDERED_ITEMS")
     public List<OrderItem> getOrderItems() {
         return orderItems;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ID")
+    public User getUser() {
+        return user;
     }
 }
