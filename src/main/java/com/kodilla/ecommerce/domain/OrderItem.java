@@ -21,6 +21,7 @@ public class OrderItem {
     private double price;
     private int quantity;
     private Order order;
+    private Product product;
 
     @Id
     @GeneratedValue
@@ -34,5 +35,11 @@ public class OrderItem {
     @JoinColumn(name = "ORDER_ID")
     public Order getOrder() {
         return order;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ID")
+    public Product getProduct() {
+        return product;
     }
 }
