@@ -21,7 +21,7 @@ public class Order {
     private Long id;
     private Long userId;
     private Long cartId;
-    private String orderStatus;
+    private OrderStatus orderStatus;
     private BigDecimal totalPrice;
     private LocalDate orderDate;
     private List<OrderItem> orderItems = new ArrayList<>();
@@ -49,7 +49,7 @@ public class Order {
 
     @NotNull
     @Column(name = "STATUS")
-    public String getOrderStatus() {
+    public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
