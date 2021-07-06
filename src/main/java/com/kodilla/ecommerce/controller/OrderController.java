@@ -1,5 +1,6 @@
 package com.kodilla.ecommerce.controller;
 
+import com.kodilla.ecommerce.domain.OrderStatus;
 import com.kodilla.ecommerce.dto.OrderDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class OrderController {
                         .id(1L)
                         .userId(1L)
                         .cartId(1L)
-                        .orderStatus("testing getOrders")
+                        .orderStatus(OrderStatus.NOT_PAID)
                         .totalPrice(new BigDecimal("123"))
                         .orderDate(LocalDate.of(2021, 6, 26))
                         .orderItemDtos(Collections.emptyList())
@@ -34,7 +35,7 @@ public class OrderController {
     public OrderDto getOrder(@PathVariable Long id) {
         return OrderDto.builder()
                 .id(1L)
-                .orderStatus("testing getOrder")
+                .orderStatus(OrderStatus.NOT_PAID)
                 .orderItemDtos(Collections.emptyList())
                 .build();
     }
@@ -43,7 +44,7 @@ public class OrderController {
     public OrderDto createOrder(@RequestBody final OrderDto orderDto) {
         return OrderDto.builder()
                 .id(1L)
-                .orderStatus("testing createOrder")
+                .orderStatus(OrderStatus.NOT_PAID)
                 .orderItemDtos(Collections.emptyList())
                 .build();
     }
@@ -52,7 +53,7 @@ public class OrderController {
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         return OrderDto.builder()
                 .id(1L)
-                .orderStatus("testing updateOrder")
+                .orderStatus(OrderStatus.NOT_PAID)
                 .orderItemDtos(Collections.emptyList())
                 .build();
     }
