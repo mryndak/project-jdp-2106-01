@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface GroupRepository extends JpaRepository<Group,Long> {
+public interface GroupRepository extends JpaRepository<Group, Long> {
 
     List<Group> findAll();
 
@@ -15,5 +15,5 @@ public interface GroupRepository extends JpaRepository<Group,Long> {
 
     Group save(Group group);
 
-    void deleteById( long id);
+    void deleteById(long id);
 }
