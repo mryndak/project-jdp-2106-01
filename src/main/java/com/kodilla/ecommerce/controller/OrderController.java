@@ -15,7 +15,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(value = "/v1/order")
 public class OrderController {
-
+    
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<OrderDto> getOrders() {
         return Arrays.asList(
@@ -30,7 +30,7 @@ public class OrderController {
                         .build()
         );
     }
-
+    
     @GetMapping( value = "/{id}", produces = APPLICATION_JSON_VALUE)
     public OrderDto getOrder(@PathVariable Long id) {
         return OrderDto.builder()
@@ -39,7 +39,7 @@ public class OrderController {
                 .orderItemDtos(Collections.emptyList())
                 .build();
     }
-
+    
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public OrderDto createOrder(@RequestBody final OrderDto orderDto) {
         return OrderDto.builder()
@@ -48,7 +48,7 @@ public class OrderController {
                 .orderItemDtos(Collections.emptyList())
                 .build();
     }
-
+    
     @PutMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         return OrderDto.builder()
@@ -57,7 +57,7 @@ public class OrderController {
                 .orderItemDtos(Collections.emptyList())
                 .build();
     }
-
+    
     @DeleteMapping(value = "/{id}")
     public void deleteOrder(@PathVariable Long id) {
         System.out.println("deleted order nr: " + id);

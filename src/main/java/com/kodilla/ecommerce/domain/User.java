@@ -24,7 +24,6 @@ public class User {
     private String userLogin;
     private boolean userStatus;
     private String password;
-    private List<Order> orderList = new ArrayList<>();
 
     @OneToMany(
             targetEntity = Order.class,
@@ -34,7 +33,5 @@ public class User {
     )
     @NotNull
     @Column(name = "ORDERS_LIST")
-    public List<Order> getOrderList() {
-        return orderList;
-    }
+    private List<Order> orderList;
 }

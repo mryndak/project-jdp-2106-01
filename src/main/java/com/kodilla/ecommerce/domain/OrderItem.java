@@ -15,31 +15,22 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class OrderItem {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "ORDER_ITEM_ID", unique = true)
     private Long id;
+
     private Long productId;
+    private Long orderId;
     private String name;
     private double price;
     private int quantity;
-    private Order order;
-    private Product product;
-
-    @Id
-    @GeneratedValue
-    @NotNull
-    @Column(name = "ORDER_ID", unique = true)
-    public Long getId() {
-        return id;
-    }
 
     @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
-    public Order getOrder() {
-        return order;
-    }
+    @JoinColumn(name = "ORDER_ID_NR")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "ID")
-    public Product getProduct() {
-        return product;
-    }
+    private Product product;
 }

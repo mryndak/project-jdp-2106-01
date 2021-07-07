@@ -2,6 +2,7 @@ package com.kodilla.ecommerce.domain;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -16,54 +17,33 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
+@Getter
 public class Order {
-
-    private Long id;
-    private Long userId;
-    private Long cartId;
-    private OrderStatus orderStatus;
-    private BigDecimal totalPrice;
-    private LocalDate orderDate;
-    private List<OrderItem> orderItems = new ArrayList<>();
-    private User user;
 
     @Id
     @GeneratedValue
-    @NotNull
     @Column(name = "ORDER_ID", unique = true)
-    public Long getId() {
-        return id;
-    }
+    private Long id;
 
     @NotNull
     @Column(name = "USER_ID")
-    public Long getUserId() {
-        return userId;
-    }
+    private Long userId;
 
     @NotNull
     @Column(name = "CART_ID")
-    public Long getCartId() {
-        return cartId;
-    }
+    private Long cartId;
 
     @NotNull
     @Column(name = "STATUS")
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
+    private OrderStatus orderStatus;
 
     @NotNull
     @Column(name = "TOTAL_PRICE")
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
+    private BigDecimal totalPrice;
 
     @NotNull
     @Column(name = "ORDER_DATE")
-    public LocalDate getOrderDate() {
-        return orderDate;
-    }
+    private LocalDate orderDate;
 
     @OneToMany(
             targetEntity = OrderItem.class,
@@ -73,13 +53,9 @@ public class Order {
     )
     @NotNull
     @Column(name = "ORDERED_ITEMS")
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "ID")
-    public User getUser() {
-        return user;
-    }
+    private User user;
 }

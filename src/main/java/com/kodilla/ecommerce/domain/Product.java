@@ -30,17 +30,13 @@ public class Product {
 
     private Long groupId;
 
-    private List<OrderItem> orderItems;
-
     @OneToMany(
             targetEntity = OrderItem.class,
             mappedBy = "product",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
+    private List<OrderItem> orderItems;
 
     //
 //    @ManyToOne
