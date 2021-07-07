@@ -22,7 +22,7 @@ public class GroupService {
     }
 
     public GroupDto getGroupById(long id) {
-        return groupMapper.mapToGroupDto(repository.findAllById(id));
+        return groupMapper.mapToGroupDto(repository.findById(id));
     }
 
     public GroupDto createGroup(GroupDto groupDto) {

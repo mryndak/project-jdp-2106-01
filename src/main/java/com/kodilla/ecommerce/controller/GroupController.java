@@ -23,7 +23,7 @@ public class GroupController {
         return groupService.getAllGroups();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public GroupDto getGroup(@PathVariable long id) {
         return groupService.getGroupById(id);
     }
