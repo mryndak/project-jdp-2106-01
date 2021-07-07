@@ -12,7 +12,7 @@ import java.util.List;
 public class CartDto {
 
     private Long id;
-    private List<Product> product;
+    private List<Product> productList;
     private BigDecimal price;
     private Long userId;
 
