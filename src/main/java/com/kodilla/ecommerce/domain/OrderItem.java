@@ -18,10 +18,11 @@ public class OrderItem {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ORDER_ID", unique = true)
+    @Column(name = "ORDER_ITEM_ID", unique = true)
     private Long id;
 
     private Long productId;
+    private Long orderId;
     private String name;
     private double price;
     private int quantity;
