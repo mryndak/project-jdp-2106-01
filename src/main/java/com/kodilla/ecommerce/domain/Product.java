@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
 @Builder
 @NoArgsConstructor
@@ -27,23 +26,20 @@ public class Product {
 
     private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "GROUP_ID")
-    private Group group;
+    private Long groupId;
 
-    @OneToMany(
-            targetEntity = OrderItem.class,
-            mappedBy = "product",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private final List<OrderItem> orderItems = new ArrayList<>();
-
-    @OneToMany(
-            targetEntity = CartItem.class,
-            mappedBy = "product",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private final List<CartItem> cartItems = new ArrayList<>();
+//    @ManyToOne
+//    @JoinColumn(name = "ORDERITEM_ID")
+//    private OrderItem orderItem;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "GROUP_ID")
+//    private Group group;
+//
+//    @ManyToMany(
+//            cascade = CascadeType.ALL,
+//            targetEntity = Cart.class,
+//            mappedBy = "carts"
+//    )
+//    private List<Cart> carts = new ArrayList<>();
 }
