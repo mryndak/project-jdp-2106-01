@@ -28,7 +28,7 @@ public class UserService {
     private final UserMapper userMapper;
     private TokenRepository tokenRepository;
 
-    private char[] symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+    private final char[] symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
     private final int EXP_TIME = 60;
     private final String USERNAME = "username";
     private final String PASSWORD = "password";

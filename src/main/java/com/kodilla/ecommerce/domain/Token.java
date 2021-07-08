@@ -1,21 +1,28 @@
 package com.kodilla.ecommerce.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @NoArgsConstructor
 @Entity
 @Table(name = "TOKEN")
+@Access(AccessType.FIELD)
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long id;
+    @Column(name = "TOKEN")
     private String token;
+    @Column(name = "EXP_DATE")
     private Date expirationDate;
+    @Column(name = "USER_ID")
     private Long userId;
 
     public String getToken() {
