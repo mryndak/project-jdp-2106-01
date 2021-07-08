@@ -8,8 +8,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+<<<<<<< HEAD
 import java.util.List;
 //import java.util.List;
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> f4102c8 (JDP210601-21_rev.1: comments improvements on real ProductController methods, added relations in Cart and Group entities)
 
 @Builder
 @NoArgsConstructor
@@ -30,7 +35,13 @@ public class Product {
 
     private BigDecimal price;
 
+<<<<<<< HEAD
     private Long groupId;
+=======
+    @ManyToOne
+    @JoinColumn(name = "GROUP_ID")
+    private Group group;
+>>>>>>> f4102c8 (JDP210601-21_rev.1: comments improvements on real ProductController methods, added relations in Cart and Group entities)
 
     @OneToMany(
             targetEntity = OrderItem.class,
@@ -38,6 +49,7 @@ public class Product {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+<<<<<<< HEAD
     private List<OrderItem> orderItems;
 
     //
@@ -51,4 +63,15 @@ public class Product {
 //            mappedBy = "carts"
 //    )
 //    private List<Cart> carts = new ArrayList<>();
+=======
+    private final List<OrderItem> orderItems = new ArrayList<>();
+
+    @OneToMany(
+            targetEntity = CartItem.class,
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private final List<CartItem> cartItems = new ArrayList<>();
+>>>>>>> f4102c8 (JDP210601-21_rev.1: comments improvements on real ProductController methods, added relations in Cart and Group entities)
 }
