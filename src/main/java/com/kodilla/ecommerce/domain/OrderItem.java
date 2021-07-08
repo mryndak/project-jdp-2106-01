@@ -22,6 +22,7 @@ public class OrderItem {
     private Long id;
 
     private Long productId;
+    private Long orderId;
     private String name;
     private double price;
     private int quantity;

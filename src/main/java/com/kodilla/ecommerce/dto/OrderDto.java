@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 public class OrderDto {
 
-    //private Long id;
+    private Long id;
     private Long userId;
     private Long cartId;
     private OrderStatus orderStatus;
