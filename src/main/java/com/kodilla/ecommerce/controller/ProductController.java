@@ -3,13 +3,14 @@ package com.kodilla.ecommerce.controller;
 import com.kodilla.ecommerce.dto.ProductDto;
 import com.kodilla.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
-@RequestMapping(value = "v1/product")
+@RequestMapping("/v1/product")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -20,22 +21,22 @@ public class ProductController {
         return service.getAllProducts();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ProductDto getById(@PathVariable long id) {
         return service.getProductById(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ProductDto create(@RequestBody ProductDto product) {
         return service.createProduct(product);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = APPLICATION_JSON_VALUE)
     public ProductDto update(@RequestBody ProductDto product) {
         return service.updateProduct(product);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         service.deleteProduct(id);
     }
