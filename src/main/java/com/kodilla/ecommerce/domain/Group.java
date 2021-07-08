@@ -1,28 +1,26 @@
 package com.kodilla.ecommerce.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Entity(name = "ProductGroup")
+@Data
+@Entity
+@Table(name = "GROUP")
 public class Group {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+    private long id;
+    private String name;
+//    private List<Product> products;
 
-    private String groupName;
-
-//    private List<Product> productList = new ArrayList<>();
-//
 //    @OneToMany(
 //            targetEntity = Product.class,
 //            mappedBy = "group",
@@ -30,6 +28,18 @@ public class Group {
 //            fetch = FetchType.LAZY
 //    )
 //    public List<Product> getProducts() {
-//        return productList;
+//        return products;
 //    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    @GeneratedValue
+    public long getId() {
+        return id;
+    }
+
+
 }
