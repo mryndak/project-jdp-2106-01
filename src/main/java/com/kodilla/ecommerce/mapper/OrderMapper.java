@@ -18,7 +18,6 @@ public class OrderMapper {
     public OrderDto mapToOrderDto(Order order) {
 
         List<OrderItem> orderItems = order.getOrderItems();
-        //order.setOrderDate(LocalDate.parse("2021-07-08"));
 
         return OrderDto.builder()
                 .id(order.getId())
