@@ -25,6 +25,7 @@ public class ProductService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public ProductDto createProduct(ProductDto productDto) {
         return mapper.mapToProductDto(repository.save(mapper.mapToProduct(productDto)));
     }
@@ -39,6 +40,14 @@ public class ProductService {
     public ProductDto updateProduct(ProductDto product) {
         return mapper.mapToProductDto(repository.save(mapper.mapToProduct(product)));
 >>>>>>> b1c4854 (JDP210601-21: real implementation of ProductController, added ProductMapper, ProductRepository, ProductService, added @Builder annotation in Product)
+=======
+    public ProductDto createProduct(ProductDto productDto) {
+        return mapper.mapToProductDto(repository.save(mapper.mapToProduct(productDto)));
+    }
+
+    public ProductDto updateProduct(ProductDto productDto) {
+        return mapper.mapToProductDto(repository.save(mapper.mapToProduct(productDto)));
+>>>>>>> 422548b (JDP210601-21_rev.1: some changes in arguments names)
     }
 
     @Transactional
