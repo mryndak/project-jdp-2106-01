@@ -17,6 +17,6 @@ public class OrderDto {
     private Long cartId;
     private OrderStatus orderStatus;
     private BigDecimal totalPrice;
-    private LocalDate orderDate;
+    private String orderDate;
     private List<OrderItemDto> orderItemDtos;
 }
