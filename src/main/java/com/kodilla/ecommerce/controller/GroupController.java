@@ -21,11 +21,6 @@ public class GroupController {
 
     private GroupService groupService;
 
-
-    ///////////////////////////////////////////////////////////////////////
-    /*
-    Ponizej znajduje się skrócona implementacja tych samych endpointów mógłby mi ktos powiedziec dla czego nie działa ?
-    */
     @GetMapping
     public List<GroupDto> getGroups() {
         ArrayList<GroupDto> testGetGroups = new ArrayList<>(List.of(new GroupDto(1, "testGetGroups")));
