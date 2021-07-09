@@ -24,7 +24,7 @@ public class UserController {
         userService.updateUserStatus(id);
     }
 
-    @GetMapping
+    @PostMapping("/login")
     public void userLogin(@RequestBody Map<String, String> creds) {
         userService.login(creds);
     }

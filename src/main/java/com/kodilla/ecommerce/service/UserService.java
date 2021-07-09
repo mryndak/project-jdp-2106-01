@@ -26,7 +26,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private TokenRepository tokenRepository;
+    private final TokenRepository tokenRepository;
 
     private final char[] symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
     private final int EXP_TIME = 60;
@@ -63,10 +63,10 @@ public class UserService {
             char random = symbols[idx];
             randomizer[i] = random;
         }
-        token.setToken(Arrays.toString(randomizer));
+
+        token.setToken(randomizer.toString());
         token.setExpirationDate(setExpiration());
         token.setUserId(u.getId());
-
         tokenRepository.save(token);
     }
 
