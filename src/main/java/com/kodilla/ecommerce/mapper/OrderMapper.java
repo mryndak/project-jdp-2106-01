@@ -5,15 +5,18 @@ import com.kodilla.ecommerce.domain.OrderItem;
 import com.kodilla.ecommerce.domain.User;
 import com.kodilla.ecommerce.dto.OrderDto;
 import com.kodilla.ecommerce.dto.OrderItemDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class OrderMapper {
 
-    OrderItemMapper orderItemMapper;
+    private final OrderItemMapper orderItemMapper;
 
     public OrderDto mapToOrderDto(Order order) {
 
@@ -45,5 +48,11 @@ public class OrderMapper {
                 orderItemMapper.mapToOrderItemList(orderItemDtos),
                 new User() // userService.getUser(orderDto.getUserId())
         );
+    }
+
+    public List<OrderDto> mapToOrderDtoList(List<Order> orders) {
+        return orders.stream()
+                .map(this::mapToOrderDto)
+                .collect(Collectors.toList());
     }
 }
