@@ -2,6 +2,7 @@ package com.kodilla.ecommerce.service;
 
 import com.kodilla.ecommerce.dto.ProductDto;
 import com.kodilla.ecommerce.mapper.ProductMapper;
+import com.kodilla.ecommerce.mapper.ProductMapperMapStruct;
 import com.kodilla.ecommerce.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ public class ProductService {
     private final ProductRepository repository;
 
     private final ProductMapper mapper;
+    private final ProductMapperMapStruct mapperMapStruct;
 
     public List<ProductDto> getAllProducts() {
         return mapper.mapToProductDtoList(repository.findAll());

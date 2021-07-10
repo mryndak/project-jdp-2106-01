@@ -40,7 +40,8 @@ public class Product {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private final List<OrderItem> orderItems = new ArrayList<>();
+    @Builder.Default
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToMany(
             targetEntity = CartItem.class,
@@ -48,5 +49,6 @@ public class Product {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private final List<CartItem> cartItems = new ArrayList<>();
+    @Builder.Default
+    private List<CartItem> cartItems = new ArrayList<>();
 }
