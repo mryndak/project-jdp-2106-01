@@ -20,7 +20,15 @@ public class OrderService {
     private final OrderMapper mapper;
 
     public List<OrderDto> getAllOrders() {
-        return Optional.ofNullable(mapper.mapToOrderDtoList(repository.findAll())).orElse(Collections.emptyList());
+        List<OrderDto> resultList = Optional.ofNullable(mapper.mapToOrderDtoList(repository.findAll())).orElse(Collections.emptyList());
+
+        if(resultList.size() == 0) {
+            log.warn(">> WARNING in running method: OrderService.getAllOrders() \n >>result list is EMPTY: ");
+            return resultList;
+        }
+
+        log.info(">> OK running method: OrderService.getAllOrders() \n >>result list size: " + resultList.size());
+        return resultList;
     }
 
     /*        without throwing exception
@@ -28,20 +36,27 @@ public class OrderService {
         return mapper.mapToOrderDto(repository.findById(id).get());
     }
  */
-
     public OrderDto getOrderById(Long id) throws OrderNotFoundException{
         return mapper.mapToOrderDto(repository.findById(id).orElseThrow(OrderNotFoundException::new));
     }
 
-    //create order, send customer data, after that EMPTY CART
+    //create order, log customer's data, after that EMPTY CART
     public OrderDto createOrder(OrderDto orderDto) {
         OrderDto resultOrderDto = mapper.mapToOrderDto(repository.save(mapper.mapToOrder(orderDto)));
 
-        if(resultOrderDto == null) {
+        if(resultOrderDto == null || !repository.existsById(orderDto.getId())) {
             log.error(">> ERROR in running method: OrderService.createOrder() \n >>unable to create order nr: "+ orderDto.getId());
             return OrderDto.builder().build();
         }
+
+        Long userId = resultOrderDto.getUserId();
+        Long cartId = resultOrderDto.getCartId();
+
+        //ToDo atach  user service.findById(userId) - get user name and address
+        //ToDo atach  cart service.removeById(cartId) - empty cart
+
         log.info(">> OK running method: OrderService.createOrder() \n >>created order nr: "+ resultOrderDto.getId());
+        log.info(">> created order for USER: " + userId);
         return resultOrderDto;
     }
 

@@ -23,7 +23,7 @@ public class OrderController {
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<OrderDto> getOrders() {
-        List<OrderDto> resultList = Optional.ofNullable(service.getAllOrders()).orElse(Collections.emptyList());
+        List<OrderDto> resultList = service.getAllOrders();
         log.info(">> running method: OrderController.getOrders() \n>> Order list size: " + resultList.size());
         return resultList;
     }
@@ -52,7 +52,7 @@ public class OrderController {
 
     @DeleteMapping(value = "/{id}")
     public void deleteOrder(@PathVariable Long id) {
-        service.deleteOrder(id);
         log.info(">> running method: OrderController.deleteOrder() \n>> Order id number: " + id);
+        service.deleteOrder(id);
     }
 }
