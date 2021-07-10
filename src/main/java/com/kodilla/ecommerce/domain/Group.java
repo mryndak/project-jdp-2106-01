@@ -1,14 +1,15 @@
 package com.kodilla.ecommerce.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -21,15 +22,11 @@ public class Group {
 
     private String groupName;
 
-//    private List<Product> productList = new ArrayList<>();
-//
-//    @OneToMany(
-//            targetEntity = Product.class,
-//            mappedBy = "group",
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY
-//    )
-//    public List<Product> getProducts() {
-//        return productList;
-//    }
+    @OneToMany(
+            targetEntity = Product.class,
+            mappedBy = "group",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private final List<Product> productList = new ArrayList<>();
 }
