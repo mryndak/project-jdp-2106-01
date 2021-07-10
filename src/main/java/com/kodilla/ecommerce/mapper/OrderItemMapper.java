@@ -23,9 +23,7 @@ public class OrderItemMapper {
 
     private final ProductService productService;
     private final ProductMapper productMapper;
-    //private final OrderService orderService;
     private final OrderRepository orderRepository;
-    //private final OrderMapper orderMapper;
 
     public OrderItemDto mapToOrderItemDto(OrderItem orderItem) {
 

@@ -25,14 +25,6 @@ public class OrderItemService {
         return mapper.mapToOrderItemDto(repository.findById(id).orElseThrow(OrderItemNotFoundException::new));
     }
 
-
-    /*
-    public OrderItemDto getOrderItemById(Long id) {
-
-        return mapper.mapToOrderItemDto(repository.findById(id).get());
-    }
-     */
-
     public List<OrderItemDto> getOrderItemsByOrderId(Long id) {
         return mapper.mapToOrderItemDtoList(repository.getByOrderId(id));
     }

@@ -28,7 +28,7 @@ public class OrderMapper {
                 .cartId(order.getCartId())
                 .orderStatus(order.getOrderStatus())
                 .totalPrice(order.getTotalPrice())
-                .orderDate(order.getOrderDate().toString())
+                .orderDate(order.getOrderDate())
                 .orderItemDtos(orderItemMapper.mapToOrderItemDtoList(orderItems))
                 .build();
     }
@@ -44,7 +44,7 @@ public class OrderMapper {
                 orderDto.getCartId(),
                 orderDto.getOrderStatus(),
                 orderDto.getTotalPrice(),
-                LocalDate.parse(orderDto.getOrderDate()),
+                orderDto.getOrderDate(),
                 orderItemMapper.mapToOrderItemList(orderItemDtos),
                 new User() // userService.getUser(orderDto.getUserId())
         );
