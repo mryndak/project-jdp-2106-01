@@ -46,7 +46,7 @@ public class OrderMapper {
                 orderDto.getTotalPrice(),
                 orderDto.getOrderDate(),
                 orderItemMapper.mapToOrderItemList(orderItemDtos),
-                new User() // userService.getUser(orderDto.getUserId())
+                new User() //ToDo userService.getUser(orderDto.getUserId())
         );
     }
 
