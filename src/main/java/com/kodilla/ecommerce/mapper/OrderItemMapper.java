@@ -1,8 +1,11 @@
 package com.kodilla.ecommerce.mapper;
 
+import com.kodilla.ecommerce.domain.Order;
 import com.kodilla.ecommerce.domain.OrderItem;
+import com.kodilla.ecommerce.dto.OrderDto;
 import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.dto.ProductDto;
+import com.kodilla.ecommerce.repository.OrderRepository;
 import com.kodilla.ecommerce.service.OrderNotFoundException;
 import com.kodilla.ecommerce.service.OrderService;
 import com.kodilla.ecommerce.service.ProductService;
@@ -20,8 +23,9 @@ public class OrderItemMapper {
 
     private final ProductService productService;
     private final ProductMapper productMapper;
-    private final OrderService orderService;
-    private final OrderMapper orderMapper;
+    //private final OrderService orderService;
+    private final OrderRepository orderRepository;
+    //private final OrderMapper orderMapper;
 
     public OrderItemDto mapToOrderItemDto(OrderItem orderItem) {
 
@@ -40,22 +44,18 @@ public class OrderItemMapper {
         Long productId = orderItemDto.getProductId();
         Long orderId = orderItemDto.getOrderId();
         ProductDto productDto = productService.getProductById(productId);
+        Order order = orderRepository.findById(orderId).orElse(Order.builder().build());
 
-        try {
-            return new OrderItem(
-                    orderItemDto.getId(),
-                    productId,
-                    orderId,
-                    orderItemDto.getName(),
-                    orderItemDto.getPrice(),
-                    orderItemDto.getQuantity(),
-                    orderMapper.mapToOrder(orderService.getOrderById(orderId)),
-                    productMapper.mapToProduct(productDto)
-            );
-        } catch (OrderNotFoundException e) {
-            log.error(">> running method: OrderItemMapper.mapToOrderItem()" + "\n>>"+ e.getMessage());
-            return OrderItem.builder().build();
-        }
+        return new OrderItem(
+                orderItemDto.getId(),
+                productId,
+                orderId,
+                orderItemDto.getName(),
+                orderItemDto.getPrice(),
+                orderItemDto.getQuantity(),
+                order,
+                productMapper.mapToProduct(productDto)
+        );
     }
 
     public List<OrderItemDto> mapToOrderItemDtoList(List<OrderItem> orderItems) {
