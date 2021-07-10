@@ -1,7 +1,10 @@
 package com.kodilla.ecommerce.controller;
 import com.kodilla.ecommerce.controller.request.AddProductToCartRequest;
+import com.kodilla.ecommerce.domain.Cart;
 import com.kodilla.ecommerce.dto.CartDto;
 import com.kodilla.ecommerce.dto.ProductDto;
+import com.kodilla.ecommerce.mapper.CartMapper;
+import com.kodilla.ecommerce.service.CartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +21,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequiredArgsConstructor
 public class CartController {
 
-//    private final CartService cartService;
-
+        private final CartService cartService;
+//        private final CartDto cartDto;
+        private final CartMapper cartMapper;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void createCart(@RequestBody final CartDto cartDto) {
@@ -27,8 +31,10 @@ public class CartController {
     }
 
     @GetMapping(value="/{cartId}")
-    public CartDto getCart(@PathVariable final Long cartId) {
+    public CartDto getCart(@PathVariable final long cartId) {
         log.info("Get cart for cartId: {}", cartId);
+//        Cart cart = cartService.getAllCarts().get((int)cartId);
+//        return cartMapper.mapCartToDto(cart);
         return CartDto.builder()
                 .id(1L)
                 .userId(123L)

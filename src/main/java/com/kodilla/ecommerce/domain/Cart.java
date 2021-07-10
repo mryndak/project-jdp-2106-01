@@ -23,6 +23,14 @@ public class Cart {
     @Column(name = "CART_ID")
     private Long id;
 
+    @OneToMany(
+            targetEntity = CartItem.class,
+            mappedBy = "cart",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<CartItem> productList = new ArrayList<>();
+
     private BigDecimal cartPrice;
 
     private Long userId;
@@ -31,11 +39,4 @@ public class Cart {
     @JoinColumn(name = "ID")
     private User user;
 
-    @OneToMany(
-            targetEntity = CartItem.class,
-            mappedBy = "cart",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private final List<CartItem> cartItems = new ArrayList<>();
 }
