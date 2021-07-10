@@ -2,12 +2,16 @@ package com.kodilla.ecommerce.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Builder;
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.NoArgsConstructor;
 
-@Builder
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "GROUP")
@@ -16,7 +20,7 @@ public class Group {
     private long id;
     private String name;
 //    private List<Product> products;
-  
+
 //    @OneToMany(
 //            targetEntity = Product.class,
 //            mappedBy = "group",
