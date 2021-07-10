@@ -1,32 +1,44 @@
 package com.kodilla.ecommerce.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Builder
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Entity(name = "ProductGroup")
+@Data
+@Entity
+@Table(name = "GROUP")
 public class Group {
+
+    private long id;
+    private String name;
+//    private List<Product> products;
+
+//    @OneToMany(
+//            targetEntity = Product.class,
+//            mappedBy = "group",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    public List<Product> getProducts() {
+//        return products;
+//    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Id
     @GeneratedValue
-    private Long id;
+    public long getId() {
+        return id;
+    }
 
-    private String groupName;
-
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "group",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private final List<Product> productList = new ArrayList<>();
 }
