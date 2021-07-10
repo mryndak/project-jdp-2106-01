@@ -1,5 +1,6 @@
 package com.kodilla.ecommerce.dto;
 
+import com.kodilla.ecommerce.domain.OrderStatus;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,7 +15,7 @@ public class OrderDto {
     private Long id;
     private Long userId;
     private Long cartId;
-    private String orderStatus;
+    private OrderStatus orderStatus;
     private BigDecimal totalPrice;
     private LocalDate orderDate;
     private List<OrderItemDto> orderItemDtos;
