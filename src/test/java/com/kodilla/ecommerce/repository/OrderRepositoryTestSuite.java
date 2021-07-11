@@ -40,7 +40,7 @@ class OrderRepositoryTestSuite {
 
         Order testOrder = Order.builder()
                 .userId(7L).cartId(11L).orderStatus(OrderStatus.NOT_PAID)
-                .totalPrice(new BigDecimal("234")).orderDate(LocalDate.of(2021, 7, 10))
+                .totalPrice(new BigDecimal(123)).orderDate(LocalDate.of(2021, 7, 10))
                 .orderItems(orderItems).build();
 
         //When
@@ -52,10 +52,11 @@ class OrderRepositoryTestSuite {
         Optional<Order> readOrder = repository.findById(id);
         assertTrue(readOrder.isPresent());
         System.out.println(">>>>>>>>>> BEFORE CLEAN elements in repo: " + repository.count());
-        System.out.println("<<<<<<<>>>>>> " + readOrder.get().getOrderDate());
 
         //Clean
         repository.deleteById(id);
         System.out.println(">>>>>>>>>> AFTER CLEAN elements in repo: " + repository.count());
     }
+
+
 }
