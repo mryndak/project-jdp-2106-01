@@ -29,7 +29,7 @@ public class Cart {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<CartItem> productList = new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
 
     private BigDecimal cartPrice;
 
