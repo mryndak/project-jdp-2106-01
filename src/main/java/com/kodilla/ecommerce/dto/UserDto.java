@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,4 +17,5 @@ public class UserDto {
     private String userLogin;
     private boolean userStatus;
     private String password;
+    private List<OrderDto> orderDtos;
 }

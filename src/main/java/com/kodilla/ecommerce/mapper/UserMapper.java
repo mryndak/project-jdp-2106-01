@@ -2,13 +2,18 @@ package com.kodilla.ecommerce.mapper;
 
 import com.kodilla.ecommerce.domain.User;
 import com.kodilla.ecommerce.dto.UserDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserMapper {
+
+    private final OrderMapper orderMapper;
+
     public User mapToUser(final UserDto userDto) {
         return new User(
                 userDto.getId(),
@@ -17,7 +22,8 @@ public class UserMapper {
                 userDto.getAddress(),
                 userDto.getUserLogin(),
                 userDto.isUserStatus(),
-                userDto.getPassword()
+                userDto.getPassword(),
+                orderMapper.mapToOrderList(userDto.getOrderDtos())
         );
     }
 
@@ -29,7 +35,8 @@ public class UserMapper {
                 user.getAddress(),
                 user.getUserLogin(),
                 user.isUserStatus(),
-                user.getPassword()
+                user.getPassword(),
+                orderMapper.mapToOrderDtoList(user.getOrderList())
         );
     }
 
