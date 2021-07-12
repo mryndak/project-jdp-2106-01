@@ -7,7 +7,7 @@ import java.util.Date;
 
 @NoArgsConstructor
 @Entity
-@Table(name = "TOKEN")
+@Table(name = "TOKENS")
 @Access(AccessType.FIELD)
 public class Token {
     @Id
