@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table
 @Entity(name = "PRODUCT_GROUPS")
 public class Group {
 
