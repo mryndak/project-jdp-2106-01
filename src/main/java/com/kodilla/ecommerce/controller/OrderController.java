@@ -41,7 +41,7 @@ public class OrderController {
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public OrderDto createOrder(@RequestBody final OrderDto orderDto) {
+    public OrderDto createOrder(@RequestBody final OrderDto orderDto) { //todo czy ma być void?
         return service.createOrder(orderDto);
     }
 

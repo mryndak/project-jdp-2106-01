@@ -43,9 +43,7 @@ public class OrderService {
 
     //create order, log customer's data, after that EMPTY CART
     public OrderDto createOrder(OrderDto orderDto) {
-        Order mappedOrder = mapper.mapToOrder(orderDto);
-        repository.save(mappedOrder);
-        Order savedOrder = repository.save(mappedOrder);
+        Order savedOrder = repository.save(mapper.mapToOrder(orderDto));
         OrderDto resultOrderDto = mapper.mapToOrderDto(savedOrder);
 
         if(resultOrderDto == null || !repository.existsById(orderDto.getId())) {

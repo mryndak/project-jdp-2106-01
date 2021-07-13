@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class OrderItemMapper {
-
+/*
     private final ProductService productService;
     private final ProductMapper productMapper;
     private final OrderRepository orderRepository;
@@ -67,4 +67,6 @@ public class OrderItemMapper {
                 .map(this::mapToOrderItem)
                 .collect(Collectors.toList());
     }
+
+ */
 }

@@ -15,7 +15,7 @@ public class OrderItem {
 
     @Id
     @GeneratedValue
-    @Column(name = "ORDER_ITEM_ID", unique = true)
+    @Column(name = "ID", unique = true)
     private Long id;
 
     private Long productId;
@@ -24,11 +24,11 @@ public class OrderItem {
     private double price;
     private int quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "ORDER_ID_NR")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ORDER_NR")
     private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "ID")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_OF_PRODUCT")
     private Product product;
 }

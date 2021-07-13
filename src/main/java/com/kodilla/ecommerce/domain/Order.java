@@ -53,7 +53,7 @@ public class Order {
     @Column(name = "ORDERED_ITEMS")
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "ID")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_OF_USER")
     private User user;
 }

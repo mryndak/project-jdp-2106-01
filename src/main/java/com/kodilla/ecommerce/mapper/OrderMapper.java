@@ -5,6 +5,11 @@ import com.kodilla.ecommerce.domain.OrderItem;
 import com.kodilla.ecommerce.domain.User;
 import com.kodilla.ecommerce.dto.OrderDto;
 import com.kodilla.ecommerce.dto.OrderItemDto;
+import com.kodilla.ecommerce.dto.ProductDto;
+import com.kodilla.ecommerce.repository.OrderRepository;
+import com.kodilla.ecommerce.repository.UserRepository;
+import com.kodilla.ecommerce.service.ProductService;
+import com.kodilla.ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +21,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderMapper {
 
-    private final OrderItemMapper orderItemMapper;
+    private final UserRepository userRepository;
+    private final ProductService productService;
+    private final ProductMapper productMapper;
+    private final OrderRepository orderRepository;
 
     public OrderDto mapToOrderDto(Order order) {
 
@@ -29,7 +37,7 @@ public class OrderMapper {
                 .orderStatus(order.getOrderStatus())
                 .totalPrice(order.getTotalPrice())
                 .orderDate(order.getOrderDate())
-                .orderItemDtos(orderItemMapper.mapToOrderItemDtoList(orderItems))
+                .orderItemDtos(this.mapToOrderItemDtoList(orderItems))
                 .build();
     }
 
@@ -45,8 +53,8 @@ public class OrderMapper {
                 orderDto.getOrderStatus(),
                 orderDto.getTotalPrice(),
                 orderDto.getOrderDate(),
-                orderItemMapper.mapToOrderItemList(orderItemDtos),
-                new User() //ToDo userService.getUser(orderDto.getUserId())
+                this.mapToOrderItemList(orderItemDtos),
+                userRepository.getUserById(orderDto.getUserId())
         );
     }
 
@@ -59,6 +67,49 @@ public class OrderMapper {
     public List<Order> mapToOrderList(List<OrderDto> orderDtos) {
         return orderDtos.stream()
                 .map(this::mapToOrder)
+                .collect(Collectors.toList());
+    }
+
+    public OrderItemDto mapToOrderItemDto(OrderItem orderItem) {
+
+        return new OrderItemDto(
+                orderItem.getId(),
+                orderItem.getProduct().getId(),
+                orderItem.getOrder().getId(),
+                orderItem.getName(),
+                orderItem.getPrice(),
+                orderItem.getQuantity()
+        );
+    }
+
+    public OrderItem mapToOrderItem(OrderItemDto orderItemDto) {
+
+        Long productId = orderItemDto.getProductId();
+        Long orderId = orderItemDto.getOrderId();
+        ProductDto productDto = productService.getProductById(productId);
+        Order order = orderRepository.findById(orderId).orElse(Order.builder().build());
+
+        return new OrderItem(
+                orderItemDto.getId(),
+                productId,
+                orderId,
+                orderItemDto.getName(),
+                orderItemDto.getPrice(),
+                orderItemDto.getQuantity(),
+                order,
+                productMapper.mapToProduct(productDto)
+        );
+    }
+
+    public List<OrderItemDto> mapToOrderItemDtoList(List<OrderItem> orderItems) {
+        return orderItems.stream()
+                .map(this::mapToOrderItemDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<OrderItem> mapToOrderItemList(List<OrderItemDto> orderItemDtos) {
+        return orderItemDtos.stream()
+                .map(this::mapToOrderItem)
                 .collect(Collectors.toList());
     }
 }

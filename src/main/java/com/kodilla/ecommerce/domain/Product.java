@@ -20,7 +20,7 @@ import java.util.List;
 public class Product {
 
     @Id
-    //@GeneratedValue  Todo remove comment
+    @GeneratedValue
     @Column(name = "ID")
     private Long id;
 

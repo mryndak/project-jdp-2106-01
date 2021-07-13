@@ -1,10 +1,9 @@
 package com.kodilla.ecommerce.service;
 
 import com.kodilla.ecommerce.dto.OrderItemDto;
-import com.kodilla.ecommerce.mapper.OrderItemMapper;
+import com.kodilla.ecommerce.mapper.OrderMapper;
 import com.kodilla.ecommerce.repository.OrderItemRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 public class OrderItemService {
 
     private final OrderItemRepository repository;
-    private final OrderItemMapper mapper;
+    private final OrderMapper mapper;
 
     public List<OrderItemDto> getAllOrderItems() {
         return mapper.mapToOrderItemDtoList(repository.findAll());
