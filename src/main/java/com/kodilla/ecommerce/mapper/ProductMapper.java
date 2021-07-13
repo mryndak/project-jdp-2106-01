@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Deprecated
 public class ProductMapper {
 
+    @Deprecated
     public Product mapToProduct(ProductDto productDto) {
         return Product.builder()
                 .id(productDto.getId())
@@ -19,6 +21,7 @@ public class ProductMapper {
                 .build();
     }
 
+    @Deprecated
     public ProductDto mapToProductDto(Product product) {
         return ProductDto.builder()
                 .id(product.getId())
@@ -28,6 +31,7 @@ public class ProductMapper {
                 .build();
     }
 
+    @Deprecated
     public List<ProductDto> mapToProductDtoList(List<Product> products) {
         return products.stream()
                 .map(this::mapToProductDto)
