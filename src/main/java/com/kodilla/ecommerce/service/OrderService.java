@@ -44,10 +44,20 @@ public class OrderService {
     //create order, log customer's data, after that EMPTY CART
     public OrderDto createOrder(OrderDto orderDto) {
         Order savedOrder = repository.save(mapper.mapToOrder(orderDto));
+        //
+
+
+
+
+
+
+        //
         OrderDto resultOrderDto = mapper.mapToOrderDto(savedOrder);
 
-        if(resultOrderDto == null || !repository.existsById(orderDto.getId())) {
-            log.error(">> ERROR in running method: OrderService.createOrder() \n >>unable to create order nr: "+ orderDto.getId());
+        if(resultOrderDto == null || !repository.existsById(resultOrderDto.getId())) {
+            log.error(">> ERROR in running method: OrderService.createOrder() " +
+                    "\n >>unable to create order for userId: " + orderDto.getUserId() +
+                    " and cart: " + orderDto.getCartId());
             return OrderDto.builder().build();
         }
 
@@ -57,8 +67,8 @@ public class OrderService {
         //ToDo atach  user service.findById(userId) - get user name and address
         //ToDo atach  cart service.removeById(cartId) - empty cart
 
-        log.info(">> OK running method: OrderService.createOrder() \n >>created order nr: "+ resultOrderDto.getId());
-        log.info(">> created order for USER: " + userId);
+        log.info(">> OK running method: OrderService.createOrder() \n >>created order nr: "+ resultOrderDto.getId()
+        + "\n >>created order for USER ID: " + userId);
         return resultOrderDto;
     }
 
