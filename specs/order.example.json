@@ -8,6 +8,7 @@
   "orderItemDtos":[
     {
       "id":1,
+      "productId":1,
       "name": "kurtka zimowa",
       "description": "Pellentesque  purus.",
       "price": 100,
@@ -16,6 +17,7 @@
     },
     {
       "id":2,
+      "productId":2,
       "name": "płaszcz",
       "description": "Pellejjjjjjjjjjpurus.",
       "price": 150,

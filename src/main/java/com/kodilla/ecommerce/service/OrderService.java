@@ -1,9 +1,13 @@
 package com.kodilla.ecommerce.service;
 
 import com.kodilla.ecommerce.domain.Order;
+import com.kodilla.ecommerce.domain.OrderItem;
+import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.dto.OrderDto;
+import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.mapper.OrderMapper;
 import com.kodilla.ecommerce.repository.OrderRepository;
+import com.kodilla.ecommerce.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,6 +23,7 @@ public class OrderService {
 
     private final OrderRepository repository;
     private final OrderMapper mapper;
+    private final ProductRepository productRepository;
 
     public List<OrderDto> getAllOrders() {
         List<OrderDto> resultList = Optional.ofNullable(mapper.mapToOrderDtoList(repository.findAll())).orElse(Collections.emptyList());
@@ -43,15 +48,29 @@ public class OrderService {
 
     //create order, log customer's data, after that EMPTY CART
     public OrderDto createOrder(OrderDto orderDto) {
+
         Order savedOrder = repository.save(mapper.mapToOrder(orderDto));
-        //
 
 
+        Long cartId = savedOrder.getCartId();
+        Long userId = savedOrder.getUser().getId();
+        String userLogin = savedOrder.getUser().getUserLogin();
+        List<OrderItemDto> itemDtosFromOrderDto = orderDto.getOrderItemDtos();
+        List<OrderItem> updateOrderItems = savedOrder.getOrderItems();
+        //updating orderItems list with correct "Order order" and "Product product"
+        /*for (OrderItem item: updateOrderItems) {
+            item.setOrder(savedOrder);
+        } */
+        for (int i = 0; i < updateOrderItems.size(); i++) {
+            Long productId = itemDtosFromOrderDto.get(i).getProductId();
+            Product product = productRepository.findById(productId).orElse(null);  //Todo - czy lepiej new Product() zamiast null
+            updateOrderItems.get(i).setProduct(product);
+            updateOrderItems.get(i).setOrder(savedOrder);
+        }
 
+        savedOrder.setOrderItems(updateOrderItems);
+        repository.save(savedOrder);
 
-
-
-        //
         OrderDto resultOrderDto = mapper.mapToOrderDto(savedOrder);
 
         if(resultOrderDto == null || !repository.existsById(resultOrderDto.getId())) {
@@ -61,14 +80,13 @@ public class OrderService {
             return OrderDto.builder().build();
         }
 
-        Long userId = resultOrderDto.getUserId();
-        Long cartId = resultOrderDto.getCartId();
 
-        //ToDo atach  user service.findById(userId) - get user name and address
+        //
+
         //ToDo atach  cart service.removeById(cartId) - empty cart
 
         log.info(">> OK running method: OrderService.createOrder() \n >>created order nr: "+ resultOrderDto.getId()
-        + "\n >>created order for USER ID: " + userId);
+        + " for USER ID: " + userId + " and username: " + userLogin);
         return resultOrderDto;
     }
 
