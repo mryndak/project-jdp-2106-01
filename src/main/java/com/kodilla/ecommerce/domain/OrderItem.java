@@ -1,6 +1,5 @@
 package com.kodilla.ecommerce.domain;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,7 +27,7 @@ public class OrderItem {
     @JoinColumn(name = "ORDER_NR")
     private Order order;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST) //todo
     @JoinColumn(name = "ID_OF_PRODUCT")
     private Product product;
 }

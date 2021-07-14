@@ -51,16 +51,12 @@ public class OrderService {
 
         Order savedOrder = repository.save(mapper.mapToOrder(orderDto));
 
-
-        Long cartId = savedOrder.getCartId();
         Long userId = savedOrder.getUser().getId();
         String userLogin = savedOrder.getUser().getUserLogin();
         List<OrderItemDto> itemDtosFromOrderDto = orderDto.getOrderItemDtos();
         List<OrderItem> updateOrderItems = savedOrder.getOrderItems();
+
         //updating orderItems list with correct "Order order" and "Product product"
-        /*for (OrderItem item: updateOrderItems) {
-            item.setOrder(savedOrder);
-        } */
         for (int i = 0; i < updateOrderItems.size(); i++) {
             Long productId = itemDtosFromOrderDto.get(i).getProductId();
             Product product = productRepository.findById(productId).orElse(null);  //Todo - czy lepiej new Product() zamiast null
@@ -79,9 +75,6 @@ public class OrderService {
                     " and cart: " + orderDto.getCartId());
             return OrderDto.builder().build();
         }
-
-
-        //
 
         //ToDo atach  cart service.removeById(cartId) - empty cart
 
