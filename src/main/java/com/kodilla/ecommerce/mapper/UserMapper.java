@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Deprecated
 public class UserMapper {
     public User mapToUser(final UserDto userDto) {
         return new User(

@@ -4,6 +4,7 @@ import com.kodilla.ecommerce.domain.Token;
 import com.kodilla.ecommerce.domain.User;
 import com.kodilla.ecommerce.dto.UserDto;
 import com.kodilla.ecommerce.mapper.UserMapper;
+import com.kodilla.ecommerce.mapper.UserMapperMapStruct;
 import com.kodilla.ecommerce.repository.TokenRepository;
 import com.kodilla.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,17 @@ import java.util.*;
 public class UserService {
 
     @Autowired
-    public UserService(UserRepository userRepository, UserMapper userMapper, TokenRepository tokenRepository) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, TokenRepository tokenRepository, UserMapperMapStruct userMapperMapStruct) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.tokenRepository = tokenRepository;
+        this.userMapperMapStruct = userMapperMapStruct;
     }
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final TokenRepository tokenRepository;
+    private final UserMapperMapStruct userMapperMapStruct;
 
     private final char[] symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
     private final int EXP_TIME = 60;
@@ -34,7 +37,8 @@ public class UserService {
     private final String PASSWORD = "password";
 
     public User saveUser(final UserDto userDto) {
-        User user = userMapper.mapToUser(userDto);
+//        User user = userMapper.mapToUser(userDto);
+        User user = userMapperMapStruct.mapToUser(userDto);
         return userRepository.save(user);
     }
 
