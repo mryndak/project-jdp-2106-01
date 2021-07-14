@@ -1,0 +1,26 @@
+{
+  "id":226,
+  "userId":1,
+  "cartId":11,
+  "orderStatus":"NOT_PAID",
+  "totalPrice":4533,
+  "orderDate":"2021-07-12",
+  "orderItemDtos":[
+    {
+      "id":1,
+      "name": "kurtka zimowa",
+      "description": "Pellentesque  purus.",
+      "price": 100,
+      "quantity":3,
+      "groupId": "1"
+    },
+    {
+      "id":2,
+      "name": "płaszcz",
+      "description": "Pellejjjjjjjjjjpurus.",
+      "price": 150,
+      "quantity":3,
+      "groupId": "1"
+    }
+  ]
+}

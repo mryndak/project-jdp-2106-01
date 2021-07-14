@@ -18,8 +18,8 @@ public class OrderItem {
     @Column(name = "ID", unique = true)
     private Long id;
 
-    private Long productId;
-    private Long orderId;
+    //private Long productId;
+    //private Long orderId;
     private String name;
     private double price;
     private int quantity;

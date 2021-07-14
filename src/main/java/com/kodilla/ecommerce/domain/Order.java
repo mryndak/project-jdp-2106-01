@@ -31,7 +31,7 @@ public class Order {
     @Column(name = "CART_ID")
     private Long cartId;
 
-    @NotNull
+    //@NotNull
     @Column(name = "STATUS")
     private OrderStatus orderStatus;
 
@@ -39,7 +39,7 @@ public class Order {
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
 
-    @NotNull
+    //@NotNull
     @Column(name = "ORDER_DATE")
     private LocalDate orderDate;
 
@@ -49,8 +49,8 @@ public class Order {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @NotNull
-    @Column(name = "ORDERED_ITEMS")
+    //@NotNull
+    //@Column(name = "ORDERED_ITEMS")
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)

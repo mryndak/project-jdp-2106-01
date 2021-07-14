@@ -34,7 +34,7 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @NotNull
-    @Column(name = "ORDERS_LIST")
+    //@NotNull
+    //@Column(name = "ORDERS_LIST")
     private List<Order> orderList;
 }
