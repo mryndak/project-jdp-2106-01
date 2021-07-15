@@ -22,9 +22,6 @@ import java.util.stream.Collectors;
 public class OrderMapper {
 
     private final UserRepository userRepository;
-   // private final ProductService productService;
-  //  private final ProductMapper productMapper;
-  //  private final OrderRepository orderRepository;
 
     public OrderDto mapToOrderDto(Order order) {
 
@@ -90,22 +87,6 @@ public class OrderMapper {
                 .price(orderItemDto.getPrice())
                 .quantity(orderItemDto.getQuantity())
                 .build();
-
-        /* Long productId = orderItemDto.getProductId();
-       // Long orderId = orderItemDto.getOrderId();
-        //ProductDto productDto = productService.getProductById(productId);
-        //Order order = orderRepository.findById(orderId).orElse(Order.builder().build());
-
-        return new OrderItem(
-                orderItemDto.getId(),
-                productId,
-                //orderId,
-                orderItemDto.getName(),
-                orderItemDto.getPrice(),
-                orderItemDto.getQuantity()
-               // order,
-              //  productMapper.mapToProduct(productDto)
-        ); */
     }
 
     public List<OrderItemDto> mapToOrderItemDtoList(List<OrderItem> orderItems) {

@@ -31,7 +31,6 @@ public class Order {
     @Column(name = "CART_ID")
     private Long cartId;
 
-    //@NotNull
     @Column(name = "STATUS")
     private OrderStatus orderStatus;
 
@@ -39,7 +38,6 @@ public class Order {
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
 
-    //@NotNull
     @Column(name = "ORDER_DATE")
     private LocalDate orderDate;
 
@@ -51,7 +49,7 @@ public class Order {
     )
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @ManyToOne//(cascade = CascadeType.ALL)  todo
+    @ManyToOne//(cascade = CascadeType.ALL)  todo jaki CascadeType
     @JoinColumn(name = "ID_OF_USER")
     private User user;
 }

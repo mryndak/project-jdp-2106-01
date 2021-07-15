@@ -21,17 +21,17 @@ class OrderRepositoryTestSuite {
     @Autowired      //without Autowired is NullPointer - repository not assigned
     private OrderRepository repository;
 
-    //@Test
+    @Test
     void TestSave() {
         //Given
         OrderItem orderItem1 = OrderItem.builder()
-                .productId(1L).orderId(1L).name("test OrderItem1").price(10).quantity(1).build();
+                .name("test OrderItem1").price(10).quantity(1).build();
 
         OrderItem orderItem2 = OrderItem.builder()
-                .productId(2L).orderId(2L).name("test OrderItem2").price(20).quantity(1).build();
+                .name("test OrderItem2").price(20).quantity(1).build();
 
         OrderItem orderItem3 = OrderItem.builder()
-                .productId(3L).orderId(3L).name("test OrderItem3").price(30).quantity(1).build();
+                .name("test OrderItem3").price(30).quantity(1).build();
 
         List<OrderItem> orderItems = new ArrayList<>();
         orderItems.add(orderItem1);

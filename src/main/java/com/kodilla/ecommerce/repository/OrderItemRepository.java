@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {   //todo remove class if unnecessary
 
     List<OrderItem> getByOrderId(Long id);
 }
