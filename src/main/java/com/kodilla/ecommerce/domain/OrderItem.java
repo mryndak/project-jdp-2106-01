@@ -24,7 +24,7 @@ public class OrderItem {
     private double price;
     private int quantity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ORDER_NR")
     private Order order;
 

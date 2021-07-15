@@ -45,6 +45,7 @@ public class OrderService {
     public OrderDto createOrder(OrderDto orderDto) {
 
         if (repository.existsById(orderDto.getId())) {
+            log.warn(">> WARN in running method OrderServide.createOrder(): order already exists, updating order");
             return this.updateOrder(orderDto);
         }
 
@@ -79,17 +80,35 @@ public class OrderService {
 
         log.info(">> OK running method: OrderService.createOrder() \n >>created order nr: "+ resultOrderDto.getId()
         + " for USER ID: " + userId + " and username: " + userLogin);
+
         return resultOrderDto;
     }
 
     public OrderDto updateOrder(OrderDto orderDto) {
-        OrderDto resultOrderDto = mapper.mapToOrderDto(repository.save(mapper.mapToOrder(orderDto)));
+        Order savedOrder = repository.save(mapper.mapToOrder(orderDto));
+
+        List<OrderItemDto> itemDtosFromOrderDto = orderDto.getOrderItemDtos();
+        List<OrderItem> updateOrderItems = savedOrder.getOrderItems();
+
+        //updating orderItems list with correct "Order order" and "Product product"
+        for (int i = 0; i < updateOrderItems.size(); i++) {
+            Long productId = itemDtosFromOrderDto.get(i).getProductId();
+            Product product = productRepository.findById(productId).orElse(null);  //Todo - czy lepiej new Product() zamiast null
+            updateOrderItems.get(i).setProduct(product);
+            updateOrderItems.get(i).setOrder(savedOrder);
+        }
+
+        savedOrder.setOrderItems(updateOrderItems);
+        repository.save(savedOrder);
+
+        OrderDto resultOrderDto = mapper.mapToOrderDto(savedOrder);
 
         if(resultOrderDto == null) {
             log.error(">> ERROR in running method: OrderService.updateOrder() \n >>unable to update order nr: "+ orderDto.getId());
             return OrderDto.builder().build();
         }
         log.info(">> OK running method: OrderService.updateOrder() \n >>updated order nr: "+ resultOrderDto.getId());
+
         return resultOrderDto;
     }
 
