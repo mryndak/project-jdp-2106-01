@@ -4,6 +4,7 @@ import com.kodilla.ecommerce.domain.Group;
 import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.repository.GroupRepository;
 import com.kodilla.ecommerce.repository.ProductRepository;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,16 +13,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 public class GroupEntityTestSuite {
-
 
     @Autowired
     private GroupRepository groupRepository;
 
     @Autowired
     private ProductRepository productRepository;
+
 
     @AfterEach
     void doCleanUp() {
@@ -165,12 +168,16 @@ public class GroupEntityTestSuite {
     }
 
     @Test
-    void ShouldTestRelationBetweenGruopAndProduct() {
+    void ShouldTestRelationBetweenGroupAndProduct() {
 
         Group testGroup1 = new Group();
         Group testGroup2 = new Group();
         Group testGroup3 = new Group();
         Group testGroup4 = new Group();
+        groupRepository.save(testGroup1);
+        groupRepository.save(testGroup2);
+        groupRepository.save(testGroup3);
+        groupRepository.save(testGroup4);
 
         testGroup1.setName("Test Group 1");
         testGroup2.setName("Test Group 2");
@@ -180,7 +187,6 @@ public class GroupEntityTestSuite {
         testGroup2.setId(2L);
         testGroup3.setId(3L);
         testGroup4.setId(4L);
-
         Product product1 = new Product(1L, "test1"
                 , "test descrition",
                 new BigDecimal("100.0"), testGroup1);
@@ -195,25 +201,30 @@ public class GroupEntityTestSuite {
                 , "test descrition",
                 new BigDecimal("100.0"), testGroup2);
 
-        groupRepository.save(testGroup1);
-        groupRepository.save(testGroup2);
-        groupRepository.save(testGroup3);
-        groupRepository.save(testGroup4);
         productRepository.save(product1);
         productRepository.save(product2);
         productRepository.save(product3);
         productRepository.save(product4);
 
         //WHEN
-
         testGroup1.getProductList().add(product1);
         testGroup1.getProductList().add(product2);
         testGroup2.getProductList().add(product3);
         testGroup2.getProductList().add(product4);
+        List<Product> productArrayListGroup1 = testGroup1.getProductList();
+        List<Product> productArrayListGroup2 = testGroup2.getProductList();
+        List<Product> productArrayListGroup3 = testGroup3.getProductList();
+        List<Product> productArrayListGroup4 = testGroup4.getProductList();
 
         //THEN
-        Assertions.assertTrue(groupRepository.findById(testGroup1.getId()).getProductList().contains(product1));
-        Assertions.assertTrue(product1.getGroup().equals(testGroup1));
+        Assertions.assertTrue(productArrayListGroup1.contains(product1));
+        Assertions.assertTrue(productArrayListGroup1.contains(product2));
+        Assertions.assertTrue(productArrayListGroup2.contains(product3));
+        Assertions.assertTrue(productArrayListGroup2.contains(product4));
+        Assertions.assertFalse(productArrayListGroup1.contains(product4));
+        Assertions.assertFalse(productArrayListGroup1.contains(product3));
+        Assertions.assertTrue(productArrayListGroup3.isEmpty());
+        Assertions.assertTrue(productArrayListGroup4.isEmpty());
     }
 
 }

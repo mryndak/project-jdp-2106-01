@@ -19,7 +19,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GroupController {
 
-    private GroupService groupService;
+    private final GroupMapper groupMapper;
+    private final GroupService groupService;
 
     @GetMapping
     public List<GroupDto> getGroups() {
