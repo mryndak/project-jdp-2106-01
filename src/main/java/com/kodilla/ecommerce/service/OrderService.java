@@ -50,7 +50,6 @@ public class OrderService {
 
         Order savedOrder = repository.save(mapper.mapToOrder(orderDto));
 
-        Long cartId = savedOrder.getCartId();
         Long userId = savedOrder.getUser().getId();
         String userLogin = savedOrder.getUser().getUserLogin();
         List<OrderItemDto> itemDtosFromOrderDto = orderDto.getOrderItemDtos();

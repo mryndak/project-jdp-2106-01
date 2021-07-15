@@ -51,7 +51,7 @@ public class Order {
     )
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = CascadeType.ALL)  todo
     @JoinColumn(name = "ID_OF_USER")
     private User user;
 }
