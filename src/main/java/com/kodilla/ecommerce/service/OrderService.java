@@ -37,11 +37,6 @@ public class OrderService {
         return resultList;
     }
 
-    /*        without throwing exception
-    public OrderDto getOrderById(Long id) {
-        return mapper.mapToOrderDto(repository.findById(id).get());
-    }
- */
     public OrderDto getOrderById(Long id) throws OrderNotFoundException{
         return mapper.mapToOrderDto(repository.findById(id).orElseThrow(OrderNotFoundException::new));
     }
@@ -49,18 +44,19 @@ public class OrderService {
     //create order, log customer's data, after that EMPTY CART
     public OrderDto createOrder(OrderDto orderDto) {
 
-        Order savedOrder = repository.save(mapper.mapToOrder(orderDto));
+        if (repository.existsById(orderDto.getId())) {
+            return this.updateOrder(orderDto);
+        }
 
+        Order savedOrder = repository.save(mapper.mapToOrder(orderDto));
 
         Long cartId = savedOrder.getCartId();
         Long userId = savedOrder.getUser().getId();
         String userLogin = savedOrder.getUser().getUserLogin();
         List<OrderItemDto> itemDtosFromOrderDto = orderDto.getOrderItemDtos();
         List<OrderItem> updateOrderItems = savedOrder.getOrderItems();
+
         //updating orderItems list with correct "Order order" and "Product product"
-        /*for (OrderItem item: updateOrderItems) {
-            item.setOrder(savedOrder);
-        } */
         for (int i = 0; i < updateOrderItems.size(); i++) {
             Long productId = itemDtosFromOrderDto.get(i).getProductId();
             Product product = productRepository.findById(productId).orElse(null);  //Todo - czy lepiej new Product() zamiast null
@@ -79,9 +75,6 @@ public class OrderService {
                     " and cart: " + orderDto.getCartId());
             return OrderDto.builder().build();
         }
-
-
-        //
 
         //ToDo atach  cart service.removeById(cartId) - empty cart
 
