@@ -49,8 +49,6 @@ public class Order {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    //@NotNull
-    //@Column(name = "ORDERED_ITEMS")
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
