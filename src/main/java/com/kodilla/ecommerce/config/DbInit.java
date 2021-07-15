@@ -16,6 +16,7 @@ public class DbInit {
     @PostConstruct
     public void initUser() {
         User u = new User();
+        u.setId(4L);
         u.setName("name");
         u.setPassword("password");
         u.setUserLogin("username");
