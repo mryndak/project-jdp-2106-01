@@ -7,6 +7,7 @@ import com.kodilla.ecommerce.mapper.UserMapper;
 import com.kodilla.ecommerce.mapper.UserMapperMapStruct;
 import com.kodilla.ecommerce.repository.TokenRepository;
 import com.kodilla.ecommerce.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
