@@ -26,9 +26,9 @@ public class ProductController {
         return service.getProductById(id);
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ProductDto create(@RequestBody ProductDto product) {
-        return service.createProduct(product);
+    @PostMapping(value = "/{groupId}", consumes = APPLICATION_JSON_VALUE)
+    public ProductDto create(@PathVariable long groupId, @RequestBody ProductDto product) {
+        return service.createProduct(groupId, product);
     }
 
     @PutMapping(consumes = APPLICATION_JSON_VALUE)

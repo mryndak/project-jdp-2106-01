@@ -9,26 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Builder
-@Entity
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "CARTS")
+@Entity(name = "CARTS")
 public class Cart {
 
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "CART_ID")
     private Long id;
 
     private BigDecimal cartPrice;
 
-    private Long userId;
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @OneToMany(

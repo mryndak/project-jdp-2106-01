@@ -1,7 +1,7 @@
 package com.kodilla.ecommerce.domain;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -18,8 +18,7 @@ public class Group {
 
     @Id
     @GeneratedValue
-    @Column
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -29,7 +28,5 @@ public class Group {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @Column(name = "PRODUCTS")
     private final List<Product> productList = new ArrayList<>();
-
 }
