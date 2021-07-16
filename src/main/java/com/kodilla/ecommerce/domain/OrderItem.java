@@ -1,10 +1,7 @@
 package com.kodilla.ecommerce.domain;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,24 +10,25 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class OrderItem {
 
     @Id
     @GeneratedValue
-    @Column(name = "ORDER_ITEM_ID", unique = true)
+    @Column(name = "ID", unique = true)
     private Long id;
 
-    private Long productId;
-    private Long orderId;
+    //private Long productId;
+    //private Long orderId;
     private String name;
     private double price;
     private int quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "ORDER_ID_NR")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ORDER_NR")
     private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "ID")
+    @ManyToOne(cascade = CascadeType.PERSIST) //todo
+    @JoinColumn(name = "ID_OF_PRODUCT")
     private Product product;
 }
