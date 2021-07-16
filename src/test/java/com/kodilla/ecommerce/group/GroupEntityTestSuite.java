@@ -73,10 +73,10 @@ public class GroupEntityTestSuite {
         //THEN
 
         Assertions.assertEquals(currentDbId + 4L, groupRepository.count());
-        Assertions.assertEquals(currentDbId + 1L, testGroup1Id);
-        Assertions.assertEquals(currentDbId + 2L, testGroup2Id);
-        Assertions.assertEquals(currentDbId + 3L, testGroup3Id);
-        Assertions.assertEquals(currentDbId + 4L, testGroup4Id);
+        Assertions.assertEquals(currentDbId + 2L, testGroup1Id);
+        Assertions.assertEquals(currentDbId + 3L, testGroup2Id);
+        Assertions.assertEquals(currentDbId + 4L, testGroup3Id);
+        Assertions.assertEquals(currentDbId + 5L, testGroup4Id);
 
         //CLEANUP
         groupRepository.deleteAll();
@@ -158,18 +158,14 @@ public class GroupEntityTestSuite {
         testGroup2.setId(2L);
         testGroup3.setId(3L);
         testGroup4.setId(4L);
-        Product product1 = new Product(1L, "test1"
-                , "test descrition",
+        Product product1 = new Product(1L, "test1", "test1", "test descrition",
                 new BigDecimal("100.0"), testGroup1);
 
-        Product product2 = new Product(2L, "test2"
-                , "test descrition",
+        Product product2 = new Product(2L, "test2", "test2", "test descrition",
                 new BigDecimal("100.0"), testGroup1);
-        Product product3 = new Product(3L, "test3"
-                , "test descrition",
+        Product product3 = new Product(3L, "test3", "test3", "test descrition",
                 new BigDecimal("100.0"), testGroup2);
-        Product product4 = new Product(4L, "test4"
-                , "test descrition",
+        Product product4 = new Product(4L, "test4", "test4", "test descrition",
                 new BigDecimal("100.0"), testGroup2);
 
         productRepository.save(product1);
