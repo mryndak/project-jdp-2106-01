@@ -10,19 +10,19 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
-@Entity(name = "Products")
+@Data
+@Entity(name = "PRODUCTS")
 public class Product {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID")
     private Long id;
+
+    private String signature;
 
     private String name;
 
+    @Column(length = 255)
     private String description;
 
     private BigDecimal price;

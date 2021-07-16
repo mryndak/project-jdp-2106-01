@@ -3,13 +3,13 @@ package com.kodilla.ecommerce.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@Entity(name = "CartItems")
+@Data
+@Entity(name = "CART_ITEMS")
 public class CartItem {
 
     @Id
@@ -18,7 +18,7 @@ public class CartItem {
 
     private String name;
 
-    private Long quantity;
+    private BigDecimal quantity;
 
     @ManyToOne
     @JoinColumn(name = "CART_ID")
