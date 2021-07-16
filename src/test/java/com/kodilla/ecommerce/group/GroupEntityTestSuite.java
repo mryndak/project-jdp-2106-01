@@ -4,8 +4,6 @@ import com.kodilla.ecommerce.domain.Group;
 import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.repository.GroupRepository;
 import com.kodilla.ecommerce.repository.ProductRepository;
-
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,23 +11,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+
 
 @SpringBootTest
 public class GroupEntityTestSuite {
-
     @Autowired
     private GroupRepository groupRepository;
 
     @Autowired
     private ProductRepository productRepository;
-
-
-    @AfterEach
-    void doCleanUp() {
-        groupRepository.deleteAll();
-    }
 
     @Transactional
     @Test
@@ -38,24 +29,24 @@ public class GroupEntityTestSuite {
         Group testGroup1 = new Group();
         Group testGroup2 = new Group();
 
-        testGroup1.setName("Test Group 1");
-        testGroup2.setName("Test Group 2");
-        testGroup1.setId(1L);
-        testGroup2.setId(2L);
-
         //WHEN
 
+        long currentDbId = groupRepository.count();
         groupRepository.save(testGroup1);
         groupRepository.save(testGroup2);
 
         //THEN
 
-        Assertions.assertEquals(2L, groupRepository.count());
+        Assertions.assertEquals(currentDbId + 2L, groupRepository.count());
         Assertions.assertTrue(groupRepository.findAll().contains(testGroup1));
         Assertions.assertTrue(groupRepository.findAll().contains(testGroup2));
 
+        // CLEANUP
+        groupRepository.deleteAll();
+
     }
 
+    @Transactional
     @Test
     void shouldFindById() {
 
@@ -65,20 +56,14 @@ public class GroupEntityTestSuite {
         Group testGroup3 = new Group();
         Group testGroup4 = new Group();
 
-        testGroup1.setName("Test Group 1");
-        testGroup2.setName("Test Group 2");
-        testGroup3.setName("Test Group 3");
-        testGroup4.setName("Test Group 4");
-        testGroup1.setId(1L);
-        testGroup2.setId(2L);
-        testGroup3.setId(3L);
-        testGroup4.setId(4L);
+        long currentDbId = groupRepository.count();
 
         //WHEN
         groupRepository.save(testGroup1);
         groupRepository.save(testGroup2);
         groupRepository.save(testGroup3);
         groupRepository.save(testGroup4);
+
 
         long testGroup1Id = testGroup1.getId();
         long testGroup2Id = testGroup2.getId();
@@ -87,36 +72,27 @@ public class GroupEntityTestSuite {
 
         //THEN
 
-        Assertions.assertEquals(4L, groupRepository.count());
-        Assertions.assertEquals(1L, testGroup1Id);
-        Assertions.assertEquals(2L, testGroup2Id);
-        Assertions.assertEquals(3L, testGroup3Id);
-        Assertions.assertEquals(4L, testGroup4Id);
+        Assertions.assertEquals(currentDbId + 4L, groupRepository.count());
+        Assertions.assertEquals(currentDbId + 1L, testGroup1Id);
+        Assertions.assertEquals(currentDbId + 2L, testGroup2Id);
+        Assertions.assertEquals(currentDbId + 3L, testGroup3Id);
+        Assertions.assertEquals(currentDbId + 4L, testGroup4Id);
 
         //CLEANUP
         groupRepository.deleteAll();
 
     }
 
+    @Transactional
     @Test
     void shouldFindAll() {
+
         //GIVEN
         Group testGroup1 = new Group();
         Group testGroup2 = new Group();
         Group testGroup3 = new Group();
         Group testGroup4 = new Group();
         Group testGroup5 = new Group();
-
-        testGroup1.setName("Test Group 1");
-        testGroup2.setName("Test Group 2");
-        testGroup3.setName("Test Group 3");
-        testGroup4.setName("Test Group 4");
-        testGroup5.setName("Test Group 5");
-        testGroup1.setId(1L);
-        testGroup2.setId(2L);
-        testGroup3.setId(3L);
-        testGroup4.setId(4L);
-        testGroup5.setId(5L);
 
         //WHEN
         groupRepository.save(testGroup1);
@@ -136,22 +112,16 @@ public class GroupEntityTestSuite {
 
     }
 
+    @Transactional
     @Test
     void shouldDeleteGroup() {
         //GIVEN
+        long currentDbSize = groupRepository.count();
         Group testGroup1 = new Group();
         Group testGroup2 = new Group();
         Group testGroup3 = new Group();
         Group testGroup4 = new Group();
 
-        testGroup1.setName("Test Group 1");
-        testGroup2.setName("Test Group 2");
-        testGroup3.setName("Test Group 3");
-        testGroup4.setName("Test Group 4");
-        testGroup1.setId(1L);
-        testGroup2.setId(2L);
-        testGroup3.setId(3L);
-        testGroup4.setId(4L);
         groupRepository.save(testGroup1);
         groupRepository.save(testGroup2);
         groupRepository.save(testGroup3);
@@ -164,12 +134,13 @@ public class GroupEntityTestSuite {
         long sizeAfterDelete = groupRepository.count();
 
         //THEN
-        Assertions.assertEquals(2L, sizeAfterDelete);
+        Assertions.assertEquals(currentDbSize + 2L, sizeAfterDelete);
     }
 
+    @Transactional
     @Test
     void ShouldTestRelationBetweenGroupAndProduct() {
-
+        groupRepository.deleteAll();
         Group testGroup1 = new Group();
         Group testGroup2 = new Group();
         Group testGroup3 = new Group();
