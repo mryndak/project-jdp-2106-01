@@ -1,10 +1,7 @@
 package com.kodilla.ecommerce.domain;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -18,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Setter
 @Getter
+@Builder
 public class Order {
 
     @Id
@@ -33,7 +31,6 @@ public class Order {
     @Column(name = "CART_ID")
     private Long cartId;
 
-    @NotNull
     @Column(name = "STATUS")
     private OrderStatus orderStatus;
 
@@ -41,7 +38,6 @@ public class Order {
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
 
-    @NotNull
     @Column(name = "ORDER_DATE")
     private LocalDate orderDate;
 
@@ -51,11 +47,9 @@ public class Order {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @NotNull
-    @Column(name = "ORDERED_ITEMS")
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "ID")
+    @ManyToOne//(cascade = CascadeType.ALL)  todo jaki CascadeType
+    @JoinColumn(name = "ID_OF_USER")
     private User user;
 }
