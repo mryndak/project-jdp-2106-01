@@ -1,13 +1,12 @@
 package com.kodilla.ecommerce.domain;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -18,18 +17,19 @@ public class Group {
 
     @Id
     @GeneratedValue
-    @Column
+    @Column(name = "GROUP_ID")
     private long id;
 
     private String name;
+
 
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     @Column(name = "PRODUCTS")
-    private final List<Product> productList = new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
 
 }
