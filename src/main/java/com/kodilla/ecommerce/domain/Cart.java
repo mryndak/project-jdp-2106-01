@@ -21,9 +21,9 @@ public class Cart {
 
     private BigDecimal cartPrice;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "USER_ID")
+//    private User user;
 
     @OneToMany(
             targetEntity = CartItem.class,
