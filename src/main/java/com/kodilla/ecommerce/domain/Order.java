@@ -47,6 +47,7 @@ public class Order {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    @Builder.Default
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToOne//(cascade = CascadeType.ALL)  todo jaki CascadeType
